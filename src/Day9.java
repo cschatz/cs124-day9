@@ -46,6 +46,11 @@ public class Day9 {
 	public static void main(String[] args) {
 		String[] things = { "A", "B", "A", "C", "A" };
 		System.out.println(countMatches(things, "A"));
+		
+		for (int i = 2; i < 100; i++) {
+			if (isPrime(i)) 
+				System.out.println(i + " is prime");
+		}
 
 	}
 
