@@ -2,25 +2,50 @@
 public class Day9 {
 	
 	
+	
+	private static int countMatchesHelper(String[] items, String target, int start) {
+		// base case - empty range
+		if (start == items.length) {
+			return 0;
+		}
+		// recursive leap(s)
+		if (items[start].equals(target)) {
+			return 1 + countMatchesHelper(items, target, start+1);
+		} else {
+			return 0 + countMatchesHelper(items, target, start+1);
+		}
+	}
+	
 	public static int countMatches(String[] items, String target) {
-		// RECURSIVELY determine and return the number of
-		// items in the array that match the target.
-		// Note: You need to make a recursive helper function like we
-		// did with previous array tasks. 
+		int result = countMatchesHelper(items, target, 0);
+		return result;
+	}
+	
+	// n is NOT prime if there is ANY number x that divides n,
+	// where x >= 2 and x <= n/2
+	
+	private static boolean hasFactor(int n, int start) {
+		// check if any number from start up to n-1
 		
-		return 0; // placeholder
+		// base cases
+		if (start == n) { // no more factors to look at
+			return false;
+		} else if (n % start == 0) { // start itself is a factor!
+			return true;
+		}
+		
+		// recursive step
+		return hasFactor(n, start+1);
 	}
 	
 	public static boolean isPrime(int n) {
-		// RECURSIVELY determine whether n is prime
-		// Note: You will need a recursive helper function here too.
-		//       What is the basic task related to determining if something is prime
-		
-		return false; // placeholder
+		boolean result = !(hasFactor(n, 2));
+		return result;
 	}
 
 	public static void main(String[] args) {
-
+		String[] things = { "A", "B", "A", "C", "A" };
+		System.out.println(countMatches(things, "A"));
 
 	}
 
